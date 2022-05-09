@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import Layout from "../components/Layout";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function TypingTest({ Component, pageProps }: AppProps) {
     return (
         <Layout>
             <Component {...pageProps} />
@@ -10,4 +10,4 @@ function MyApp({ Component, pageProps }: AppProps) {
     );
 }
 
-export default MyApp;
+export default TypingTest;

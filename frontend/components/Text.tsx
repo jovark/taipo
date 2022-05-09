@@ -1,9 +1,18 @@
-import styles from "../styles/Text.module.css";
+import styles from '../styles/Text.module.css';
 
-const Text = () => {
+type Props = {
+    words: string[];
+};
+
+const Text = ({ words }: Props) => {
     return (
         <div className={styles.text}>
-            This is the placeholder text of the typing test
+            {words.map((word) => (
+                <h3 key={word}>{word}</h3>
+            ))}
+            <div className='word'>
+                <div className='letter'></div>
+            </div>
         </div>
     );
 };

@@ -1,8 +1,10 @@
-import type { NextPage } from "next";
-import Text from "../components/Text";
+import type { NextPage } from 'next';
+import Text from '../components/Text';
 
 const Home: NextPage = () => {
-    return <Text></Text>;
+    const words: string[] = ['testing', 'the', 'typing', 'game', 'text'];
+
+    return <Text words={words}></Text>;
 };
 
 export default Home;
