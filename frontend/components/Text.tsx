@@ -6,9 +6,9 @@ const Text = ({ words }: Props) => {
     return (
         <div className='text'>
             {words.map((word) => (
-                <h3 className='word' key={word}>
+                <div className='word' key={word}>
                     {word}
-                </h3>
+                </div>
             ))}
         </div>
     );
