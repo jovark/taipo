@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Head from 'next/head';
 
 type Props = {
     title: string;
@@ -23,9 +23,9 @@ const Meta = ({ title, keywords, description }: Props) => {
 };
 
 Meta.defaultProps = {
-    title: "Typing Test",
-    keywords: "typing test, wpm",
-    description: "Find out how fast you type",
+    title: 'Typing Test',
+    keywords: 'typing test, wpm',
+    description: 'Find out how fast you type',
 };
 
 export default Meta;

@@ -1,18 +1,15 @@
-import styles from '../styles/Text.module.css';
-
 type Props = {
     words: string[];
 };
 
 const Text = ({ words }: Props) => {
     return (
-        <div className={styles.text}>
+        <div className='text'>
             {words.map((word) => (
-                <h3 key={word}>{word}</h3>
+                <h3 className='word' key={word}>
+                    {word}
+                </h3>
             ))}
-            <div className='word'>
-                <div className='letter'></div>
-            </div>
         </div>
     );
 };

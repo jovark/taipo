@@ -11,9 +11,9 @@ const Layout = ({ children }: Props) => {
     return (
         <>
             <Meta />
-            <div className={styles.container}>
+            <div className='container'>
                 <Nav />
-                <main className={styles.main}>{children}</main>
+                <div className='main'>{children}</div>
                 <Footer />
             </div>
         </>

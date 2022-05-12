@@ -1,18 +1,18 @@
-import Link from "next/link";
-import styles from "../styles/Nav.module.css";
+import Link from 'next/link';
+import styles from '../styles/Nav.module.css';
 
 const Nav = () => {
     return (
-        <nav className={styles.nav}>
+        <div className='nav'>
             <ul>
-                <li className={styles.logo}>
-                    <Link href='/'>Typing Test</Link>
+                <li className='logo'>
+                    <Link href='/'>TypingTest</Link>
                 </li>
                 <li>
                     <Link href='/about'>About</Link>
                 </li>
             </ul>
-        </nav>
+        </div>
     );
 };
 
