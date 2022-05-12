@@ -12,6 +12,7 @@ body {
 
 /* Layout */
 .container {
+    min-width: 1000px;
     align-items: center;
     display: grid;
     gap: 2rem;
@@ -26,16 +27,17 @@ body {
 }
 
 /* Navbar */
-
 .nav {
     display: grid;
 }
 
-.logo .logo a {
+.logo a {
+    font-size: 1.5rem;
     color: #bd93f9 !important;
 }
 
 .nav ul {
+    align-items: center;
     padding: 0;
     display: flex;
     width: 100%;
@@ -51,12 +53,33 @@ body {
 /* Text */
 .text {
     min-height: 200px;
-    display: flex;
+    font-size: 1.5rem;
 }
 
-.text .word {
+.input {
+    width: 100%;
+}
+
+.start-btn {
+    width: 100%;
+    background: #20222c;
+    color: #f2f2f2;
     font-size: 1.5rem;
-    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: #20222c;
+}
+
+.correct {
+    color: #bd93f9;
+}
+
+.incorrect {
+    color: #ec75c4;
+}
+
+.neutral {
+    color: #f2f2f2;
 }
 
 /* Footer */

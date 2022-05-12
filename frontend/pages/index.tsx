@@ -8,7 +8,15 @@ const Home: NextPage = () => {
         'typing',
         'game',
         'text',
-        'faaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+        'this',
+        'is',
+        'just',
+        'a',
+        'placeholder',
+        'text',
+        'bla',
+        'bla',
+        'bla',
     ];
 
     return <Text words={words}></Text>;

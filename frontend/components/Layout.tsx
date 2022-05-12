@@ -1,6 +1,5 @@
 import Nav from './Nav';
 import Meta from './Meta';
-import styles from '../styles/Layout.module.css';
 import Footer from './Footer';
 
 type Props = {
