@@ -1,14 +1,18 @@
+import navStyles from '../styles/Nav.module.css';
 import Link from 'next/link';
 
 const Nav = () => {
     return (
-        <div className='nav'>
+        <div className={navStyles.nav}>
             <ul>
-                <li className='logo'>
-                    <Link href='/'>TypingTest</Link>
+                <li className={navStyles.logo}>
+                    <Link href='/'>typingtest</Link>
                 </li>
                 <li>
-                    <Link href='/about'>About</Link>
+                    <Link href='/about'>about</Link>
+                </li>
+                <li>
+                    <Link href='/settings'>settings</Link>
                 </li>
             </ul>
         </div>

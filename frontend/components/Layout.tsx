@@ -1,3 +1,4 @@
+import layoutStyles from '../styles/Layout.module.css';
 import Nav from './Nav';
 import Meta from './Meta';
 import Footer from './Footer';
@@ -10,9 +11,9 @@ const Layout = ({ children }: Props) => {
     return (
         <>
             <Meta />
-            <div className='container'>
+            <div className={layoutStyles.container}>
                 <Nav />
-                <div className='main'>{children}</div>
+                <div className={layoutStyles.main}>{children}</div>
                 <Footer />
             </div>
         </>

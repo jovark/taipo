@@ -1,0 +1,31 @@
+.timer {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.input {
+    width: 100%;
+}
+
+.btn {
+    width: 100%;
+    background: #20222c;
+    color: #f2f2f2;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 5px;
+    border-color: #20222c;
+}
+
+.text {
+    min-height: 200px;
+    font-size: 1.5rem;
+}
+
+.wpm,
+.accuracy {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.25rem;
+    color: #bd93f9;
+}

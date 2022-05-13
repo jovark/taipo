@@ -1,0 +1,14 @@
+.container {
+    min-width: 1000px;
+    align-items: center;
+    display: grid;
+    gap: 2rem;
+    grid-template-rows: auto 1fr auto;
+    max-width: 1000px;
+    min-height: 95vh;
+    width: 100%;
+}
+
+.main {
+    color: #f2f2f2;
+}

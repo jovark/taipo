@@ -1,0 +1,22 @@
+.nav {
+    display: grid;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    color: #bd93f9 !important;
+}
+
+.nav ul {
+    align-items: center;
+    padding: 0;
+    display: flex;
+    width: 100%;
+    list-style: none;
+}
+
+.nav ul a {
+    margin-right: 10px;
+    color: #f2f2f2;
+    text-decoration: none;
+}

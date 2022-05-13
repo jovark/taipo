@@ -1,3 +1,4 @@
+import textStyles from '../styles/Text.module.css';
 import { useEffect, useState, useRef } from 'react';
 
 type Props = {
@@ -12,10 +13,10 @@ const Text = ({ words }: Props) => {
     }
 
     // TODO: implement changing time
-    const timeInSeconds: number = 120;
+    const timeInSeconds: number = 5;
 
     const [wordsToType, setWordsToType] = useState(['']);
-    const [_, setTimer] = useState(timeInSeconds);
+    const [timer, setTimer] = useState(timeInSeconds);
     const [currentInput, setCurrentInput] = useState('');
     const [currentWordIndex, setCurrentWordIndex] = useState(0);
     const [currentLetterIndex, setCurrentLetterIndex] = useState(-1);
@@ -48,12 +49,7 @@ const Text = ({ words }: Props) => {
     const start = () => {
         // Resets state after the game has finished
         if (gameState === GameState.finished) {
-            setWordsToType(words);
-            setCurrentWordIndex(0);
-            setCorrectWordCount(0);
-            setIncorrectWordCount(0);
-            setCurrentLetterIndex(-1);
-            setCurrentLetter('');
+            resetGame();
         }
 
         // Starts the game
@@ -74,6 +70,15 @@ const Text = ({ words }: Props) => {
         }
     };
 
+    const resetGame = () => {
+        setWordsToType(words);
+        setCurrentWordIndex(0);
+        setCorrectWordCount(0);
+        setIncorrectWordCount(0);
+        setCurrentLetterIndex(-1);
+        setCurrentLetter('');
+    };
+
     const handleKeyDown = ({ keyCode, key }: any) => {
         const modifiers: number[] = [16, 8, 17, 18];
 
@@ -87,6 +92,10 @@ const Text = ({ words }: Props) => {
         } else if (keyCode === 8) {
             setCurrentLetterIndex(currentLetterIndex - 1);
             setCurrentLetter(typedLetters[numberOfLettersTyped - 1]);
+            // Tab
+        } else if (keyCode === 9) {
+            // resetGame();
+            // setGameState(GameState.waiting);
         } else {
             setCurrentLetterIndex(currentLetterIndex + 1);
             setCurrentLetter(key);
@@ -135,23 +144,32 @@ const Text = ({ words }: Props) => {
 
     return (
         <>
+            <div
+                hidden={gameState !== GameState.started}
+                className={textStyles.timer}
+            >
+                {timer}
+            </div>
             <input
                 ref={inputElement}
                 hidden={gameState !== GameState.started}
                 type='text'
-                className='input'
+                className={textStyles.input}
                 onKeyDown={handleKeyDown}
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value)}
             />
             <button
                 hidden={gameState === GameState.started}
-                className='start-btn'
+                className={textStyles.btn}
                 onClick={start}
             >
                 start the typing test
             </button>
-            <div hidden={gameState !== GameState.started} className='text'>
+            <div
+                hidden={gameState !== GameState.started}
+                className={textStyles.text}
+            >
                 {wordsToType.map((word, i) => (
                     <span key={i}>
                         <span>
@@ -170,12 +188,14 @@ const Text = ({ words }: Props) => {
             </div>
             {gameState === GameState.finished && (
                 <>
-                    <div className='wpm'>
+                    <div className={textStyles.wpm}>
                         wpm:
-                        {(numberOfLettersTyped / 5 - incorrectWordCount) /
-                            (timeInSeconds / 60)}
+                        {Math.round(
+                            (numberOfLettersTyped / 5 - incorrectWordCount) /
+                                (timeInSeconds / 60)
+                        )}
                     </div>
-                    <div className='accuracy'>
+                    <div className={textStyles.accuracy}>
                         accuracy:{' '}
                         {Math.round(
                             correctWordCount /
