@@ -36,7 +36,7 @@ const Text = ({ words, time }: Props) => {
 
     useEffect(() => {
         setWordsToType(words);
-        setLettersToType(words.map((word) => (word + ' ').split('')).flat());
+        // setLettersToType(words.map((word) => (word + ' ').split('')).flat());
     }, [words]);
 
     useEffect(() => {
