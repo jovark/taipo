@@ -1,11 +1,13 @@
 .timer {
     text-align: center;
     font-size: 1.2rem;
+    margin-bottom: 5px;
 }
 
 .input {
     width: 100%;
     font-size: 1.25rem;
+    margin-bottom: 5px;
     background-color: var(--bg-color);
     border-radius: 5px;
     border-color: var(--bg-color);

@@ -3,9 +3,10 @@ import { useEffect, useState, useRef } from 'react';
 
 type Props = {
     words: string[];
+    time: number;
 };
 
-const Text = ({ words }: Props) => {
+const Text = ({ words, time }: Props) => {
     enum GameState {
         waiting,
         started,
@@ -13,7 +14,7 @@ const Text = ({ words }: Props) => {
     }
 
     // TODO: implement changing time
-    const timeInSeconds: number = 5;
+    const timeInSeconds: number = time;
 
     const [wordsToType, setWordsToType] = useState(['']);
     const [timer, setTimer] = useState(timeInSeconds);
@@ -25,16 +26,14 @@ const Text = ({ words }: Props) => {
     const [incorrectWordCount, setIncorrectWordCount] = useState(0);
     const [gameState, setGameState] = useState(GameState.waiting);
     const [numberOfLettersTyped, setCharactersTyped] = useState(0);
-
-    const [globalLetterIndex, setGlobalLetterIndex] = useState(0);
+    const [typedLetters, setTypedLetters] = useState(['']);
 
     // TODO: make the typed text keep its colors
     const [lettersToType, setLettersToType] = useState(['']);
-    const [typedLetters, setTypedLetters] = useState(['']);
+    const [globalLetterIndex, setGlobalLetterIndex] = useState(0);
 
     const inputElement = useRef<HTMLInputElement>(null);
 
-    // TODO: implement generating a list of words
     useEffect(() => {
         setWordsToType(words);
         setLettersToType(words.map((word) => (word + ' ').split('')).flat());
