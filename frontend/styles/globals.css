@@ -1,9 +1,14 @@
 * {
     box-sizing: border-box;
+    --bg-color: #282a36;
+    --highlight: #20222c;
+    --text-primary: #f2f2f2;
+    --text-secondary: #bd93f9;
+    --text-error: #ec75c4;
 }
 
 body {
-    background: #282a36;
+    background: var(--bg-color);
     font-size: 16px;
     line-height: 1.5;
     display: flex;
@@ -12,13 +17,9 @@ body {
 
 /* Text */
 .correct {
-    color: #bd93f9;
+    color: var(--text-secondary);
 }
 
 .incorrect {
-    color: #ec75c4;
-}
-
-.neutral {
-    color: #f2f2f2;
+    color: var(--text-error);
 }

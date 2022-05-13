@@ -4,7 +4,7 @@
 
 .logo a {
     font-size: 1.5rem;
-    color: #bd93f9 !important;
+    color: var(--text-secondary) !important;
 }
 
 .nav ul {
@@ -17,6 +17,6 @@
 
 .nav ul a {
     margin-right: 10px;
-    color: #f2f2f2;
+    color: var(--text-primary);
     text-decoration: none;
 }
