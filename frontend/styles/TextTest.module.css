@@ -1,0 +1,22 @@
+.App {
+  text-align: center;
+  font-family: monospace;
+}
+
+.character {
+  font-size: 1.5rem;
+  white-space: pre;
+}
+
+.current {
+  background-color: var(--text-secondary);
+  color: var(--text-primary);
+}
+
+.out {
+  color: var(--text-secondary);
+}
+
+.incorrect {
+  color: var(--text-error);
+}

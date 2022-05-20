@@ -1,11 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiResponse } from 'next';
 import Language from '../../../models/languageModel';
 import connectMongo from '../../../utils/mongo';
 
-export default async function handler(
-    req: NextApiRequest,
-    res: NextApiResponse
-) {
+export default async function handler(res: NextApiResponse) {
     await connectMongo();
 
     const languages = await Language.find();

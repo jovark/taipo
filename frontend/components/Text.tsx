@@ -2,7 +2,7 @@ import textStyles from '../styles/Text.module.css';
 import { useEffect, useState, useRef, PropsWithRef } from 'react';
 
 const Text = ({
-    words,
+  words,
     time,
 }: PropsWithRef<{ words: string[]; time: number }>) => {
     enum GameState {
@@ -27,8 +27,8 @@ const Text = ({
     const [typedLetters, setTypedLetters] = useState(['']);
 
     // TODO: make the typed text keep its colors
-    const [lettersToType, setLettersToType] = useState(['']);
-    const [globalLetterIndex, setGlobalLetterIndex] = useState(0);
+    // const [lettersToType, setLettersToType] = useState(['']);
+    // const [globalLetterIndex, setGlobalLetterIndex] = useState(0);
 
     const inputElement = useRef<HTMLInputElement>(null);
 
