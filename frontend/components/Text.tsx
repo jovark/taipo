@@ -1,12 +1,10 @@
 import textStyles from '../styles/Text.module.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, PropsWithRef } from 'react';
 
-type Props = {
-    words: string[];
-    time: number;
-};
-
-const Text = ({ words, time }: Props) => {
+const Text = ({
+    words,
+    time,
+}: PropsWithRef<{ words: string[]; time: number }>) => {
     enum GameState {
         waiting,
         started,
@@ -165,18 +163,12 @@ const Text = ({ words, time }: Props) => {
             >
                 start the typing test
             </button>
-            <div
-                hidden={gameState !== GameState.started}
-                className={textStyles.text}
-            >
+            <div hidden={gameState !== GameState.started} className={textStyles.text}>
                 {wordsToType.map((word, i) => (
                     <span key={i}>
                         <span>
                             {word.split('').map((letter, idx) => (
-                                <span
-                                    className={getLetterClass(i, idx, letter)}
-                                    key={idx}
-                                >
+                                <span className={getLetterClass(i, idx, letter)} key={idx}>
                                     {letter}
                                 </span>
                             ))}
@@ -191,14 +183,13 @@ const Text = ({ words, time }: Props) => {
                         wpm:
                         {Math.round(
                             (numberOfLettersTyped / 5 - incorrectWordCount) /
-                                (timeInSeconds / 60)
+                            (timeInSeconds / 60)
                         )}
                     </div>
                     <div className={textStyles.accuracy}>
                         accuracy:{' '}
                         {Math.round(
-                            correctWordCount /
-                                (correctWordCount + incorrectWordCount)
+                            correctWordCount / (correctWordCount + incorrectWordCount)
                         ) * 100}
                         %
                     </div>

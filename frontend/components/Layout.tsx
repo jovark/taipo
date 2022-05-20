@@ -2,13 +2,9 @@ import layoutStyles from '../styles/Layout.module.css';
 import Nav from './Nav';
 import Meta from './Meta';
 import Footer from './Footer';
-import { ReactElement } from 'react';
+import { PropsWithChildren, ReactElement } from 'react';
 
-type Props = {
-    children: any;
-};
-
-const Layout = ({ children }: Props): ReactElement => {
+const Layout = ({ children }: PropsWithChildren<{}>): ReactElement => {
     return (
         <>
             <Meta />
