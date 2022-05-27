@@ -1,1 +1,1 @@
-
+# Typing test project
