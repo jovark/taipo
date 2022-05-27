@@ -1,8 +1,6 @@
 import { PropsWithRef } from 'react';
 import { randomInt } from 'crypto';
 import Text from '../components/Text';
-import TextTest from '../components/textTest';
-import TextTest2 from '../components/textTest2';
 
 export const getServerSideProps = async () => {
     const apiUri = 'http://localhost:3000/api';
@@ -27,7 +25,7 @@ const Home = ({ words }: PropsWithRef<{ words: string }>) => {
     const time: number = 15;
 
     return (
-        <TextTest2 words={words}></TextTest2>
+        <Text words={words}></Text>
         // <Text words={words} time={time}></Text>
     );
 };

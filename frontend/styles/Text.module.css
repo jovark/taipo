@@ -1,38 +1,16 @@
-.timer {
-    text-align: center;
-    font-size: 1.2rem;
-    margin-bottom: 5px;
-}
-
-.input {
-    width: 100%;
-    font-size: 1.25rem;
-    margin-bottom: 5px;
-    background-color: var(--bg-color);
-    border-radius: 5px;
-    border-color: var(--bg-color);
-    color: var(--text-primary);
-}
-
-.btn {
-    width: 100%;
-    background: var(--highlight);
-    color: var(--text-primary);
-    font-size: 1.5rem;
-    padding: 10px;
-    border-radius: 5px;
-    border-color: var(--highlight);
-}
-
 .text {
-    min-height: 200px;
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
-.wpm,
-.accuracy {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 1.25rem;
-    color: var(--text-secondary);
+.typed {
+  color: var(--text-primary);
+}
+
+.current {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
+.coming {
+  color: var(--text-secondary);
 }
