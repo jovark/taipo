@@ -2,6 +2,7 @@ import { PropsWithRef } from 'react';
 import { randomInt } from 'crypto';
 import Text from '../components/Text';
 import TextTest from '../components/textTest';
+import TextTest2 from '../components/textTest2';
 
 export const getServerSideProps = async () => {
     const apiUri = 'http://localhost:3000/api';
@@ -15,12 +16,6 @@ export const getServerSideProps = async () => {
         .map((_) => language.words[randomInt(language.words.length)])
         .join(' ');
 
-    // let words = [];
-    //
-    // for (let i = 0; i < 100; i++) {
-    //     words.push(language.words[randomInt(language.words.length)]);
-    // }
-
     return {
         props: {
             words,
@@ -32,7 +27,7 @@ const Home = ({ words }: PropsWithRef<{ words: string }>) => {
     const time: number = 15;
 
     return (
-        <TextTest words={words}></TextTest>
+        <TextTest2 words={words}></TextTest2>
         // <Text words={words} time={time}></Text>
     );
 };

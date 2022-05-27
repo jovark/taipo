@@ -9,8 +9,8 @@
 }
 
 .current {
-  background-color: var(--text-secondary);
   color: var(--text-primary);
+  text-decoration: underline;
 }
 
 .out {

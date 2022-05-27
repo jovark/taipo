@@ -1,0 +1,16 @@
+.text {
+  font-size: 1.5rem;
+}
+
+.typed {
+  color: var(--text-primary);
+}
+
+.current {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
+.coming {
+  color: var(--text-secondary);
+}
