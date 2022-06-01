@@ -2,7 +2,7 @@ import type { AppProps } from 'next/app';
 import Layout from '../components/Layout';
 import '../styles/globals.css';
 
-function TypingTest({ Component, pageProps }: AppProps) {
+function Taipo({ Component, pageProps }: AppProps) {
     return (
         <Layout>
             <Component {...pageProps} />
@@ -10,4 +10,4 @@ function TypingTest({ Component, pageProps }: AppProps) {
     );
 }
 
-export default TypingTest;
+export default Taipo;

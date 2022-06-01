@@ -19,8 +19,8 @@ const Meta = ({
 };
 
 Meta.defaultProps = {
-    title: 'Typing Test',
-    keywords: 'typing test, wpm',
+    title: 'taipo',
+    keywords: 'taipo, typing test, wpm',
     description: 'Find out how fast you type',
 };
 

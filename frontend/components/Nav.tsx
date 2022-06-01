@@ -6,7 +6,7 @@ const Nav = () => {
         <div className={navStyles.nav}>
             <ul>
                 <li className={navStyles.logo}>
-                    <Link href='/'>typingtest</Link>
+                    <Link href='/'>taipo</Link>
                 </li>
                 <li>
                     <Link href='/about'>about</Link>
