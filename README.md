@@ -1,1 +1,2 @@
-# taipo a typing test project
+# taipo
+### A typing test project
