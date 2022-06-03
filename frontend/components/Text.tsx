@@ -23,6 +23,8 @@ const Text = ({
     const [seconds, setSeconds] = useState(time);
     const [gameState, setGameState] = useState(GameState.Waiting);
     const [errors, setErrors] = useState(0);
+    const [totalCharsTyped, setTotalCharsTyped] = useState(0);
+    const [correctCharsTyped, setCorrectCharsTyped] = useState(0);
 
     const startGame = () => {
         if (gameState === GameState.Finished) {
@@ -42,14 +44,6 @@ const Text = ({
                         return previousSeconds - 1;
                     }
                 });
-                let count = 0;
-                typedChars.forEach((char) => {
-                    if (char.isMistake) {
-                        count++;
-                    }
-                });
-
-                setErrors(count);
             }, 1000);
         }
     };
@@ -61,9 +55,13 @@ const Text = ({
         }
 
         if (key === currentChar) {
-            setTypedChars([...typedChars, { letter: currentChar, isMistake: false }]);
+            setTypedChars([
+                ...typedChars,
+                { letter: currentChar, isMistake: false },
+            ]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
+            setTotalCharsTyped(totalCharsTyped + 1);
         } else if (key === 'Backspace') {
             if (typedChars.length > 1) {
                 setCurrentChar(typedChars[typedChars.length - 1].letter);
@@ -71,19 +69,29 @@ const Text = ({
                 setTypedChars(typedChars.splice(0, typedChars.length - 1));
             }
         } else {
-            setTypedChars([...typedChars, { letter: currentChar, isMistake: true }]);
+            setTypedChars([
+                ...typedChars,
+                { letter: currentChar, isMistake: true },
+            ]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
+            setTotalCharsTyped(totalCharsTyped + 1);
         }
 
+        // Update wpm and accuracy
+        let errorCount = 0;
         let count = 0;
+
         typedChars.forEach((char) => {
             if (char.isMistake) {
+                errorCount++;
+            } else {
                 count++;
             }
         });
 
-        setErrors(count);
+        setErrors(errorCount);
+        setCorrectCharsTyped(count);
     });
 
     return (
@@ -95,7 +103,9 @@ const Text = ({
                     {typedChars.map((letter, index) => (
                         <span
                             className={
-                                letter.isMistake ? textStyles.incorrect : textStyles.correct
+                                letter.isMistake
+                                    ? textStyles.incorrect
+                                    : textStyles.correct
                             }
                             key={index}
                         >
@@ -103,15 +113,22 @@ const Text = ({
                         </span>
                     ))}
                     <span className={textStyles.current}>{currentChar}</span>
-                    <span className={textStyles.coming}>{chars.substring(0, 300)}</span>
+                    <span className={textStyles.coming}>
+                        {chars.substring(0, 300)}
+                    </span>
                 </p>
             )}
-            {gameState === GameState.Started && (
+            {gameState === GameState.Finished && (
                 <div>
                     wpm:{' '}
                     {Math.round(
-                        ((typedChars.length / 5 - errors) / ((time - seconds) / 60)) * 10
+                        ((totalCharsTyped / 5 - errors) / (time / 60)) * 10
                     ) / 10}
+                    , acc:{' '}
+                    {Math.floor(
+                        (correctCharsTyped / totalCharsTyped) * 100 * 10
+                    ) / 10}
+                    %
                 </div>
             )}
         </>
