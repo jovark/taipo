@@ -55,10 +55,7 @@ const Text = ({
         }
 
         if (key === currentChar) {
-            setTypedChars([
-                ...typedChars,
-                { letter: currentChar, isMistake: false },
-            ]);
+            setTypedChars([...typedChars, { letter: currentChar, isMistake: false }]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
             setTotalCharsTyped(totalCharsTyped + 1);
@@ -69,15 +66,11 @@ const Text = ({
                 setTypedChars(typedChars.splice(0, typedChars.length - 1));
             }
         } else {
-            setTypedChars([
-                ...typedChars,
-                { letter: currentChar, isMistake: true },
-            ]);
+            setTypedChars([...typedChars, { letter: currentChar, isMistake: true }]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
             setTotalCharsTyped(totalCharsTyped + 1);
         }
-
         // Update wpm and accuracy
         let errorCount = 0;
         let count = 0;
@@ -96,39 +89,32 @@ const Text = ({
 
     return (
         <>
-            <div>{seconds}</div>
             {gameState !== GameState.Finished && (
-                <p className={textStyles.text}>
-                    {/* 67 */}
-                    {typedChars.map((letter, index) => (
-                        <span
-                            className={
-                                letter.isMistake
-                                    ? textStyles.incorrect
-                                    : textStyles.correct
-                            }
-                            key={index}
-                        >
-                            {letter.letter}
-                        </span>
-                    ))}
-                    <span className={textStyles.current}>{currentChar}</span>
-                    <span className={textStyles.coming}>
-                        {chars.substring(0, 300)}
-                    </span>
-                </p>
+                <>
+                    <div>{seconds}</div>
+                    <p className={textStyles.text}>
+                        {/* 67 */}
+                        {typedChars.map((letter, index) => (
+                            <span
+                                className={
+                                    letter.isMistake ? textStyles.incorrect : textStyles.correct
+                                }
+                                key={index}
+                            >
+                                {letter.letter}
+                            </span>
+                        ))}
+                        <span className={textStyles.current}>{currentChar}</span>
+                        <span className={textStyles.coming}>{chars.substring(0, 300)}</span>
+                    </p>
+                </>
             )}
             {gameState === GameState.Finished && (
                 <div>
                     wpm:{' '}
-                    {Math.round(
-                        ((totalCharsTyped / 5 - errors) / (time / 60)) * 10
-                    ) / 10}
+                    {Math.round(((totalCharsTyped / 5 - errors) / (time / 60)) * 10) / 10}
                     , acc:{' '}
-                    {Math.floor(
-                        (correctCharsTyped / totalCharsTyped) * 100 * 10
-                    ) / 10}
-                    %
+                    {Math.floor((correctCharsTyped / totalCharsTyped) * 100 * 10) / 10}%
                 </div>
             )}
         </>
