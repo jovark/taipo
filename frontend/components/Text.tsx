@@ -2,43 +2,96 @@ import { PropsWithRef, useState } from 'react';
 import useKeyPress from '../hooks/useKeyPress';
 import textStyles from '../styles/Text.module.css';
 
-const Text = ({ words }: PropsWithRef<{ words: string }>) => {
-    const [typedChars, setTypedChars] = useState('');
+enum GameState {
+    Waiting,
+    Started,
+    Finished,
+}
+
+const Text = ({
+    words,
+    time,
+}: PropsWithRef<{ words: string; time: number }>) => {
+    const [typedChars, setTypedChars] = useState([
+        {
+            letter: '',
+            isMistake: false,
+        },
+    ]);
     const [currentChar, setCurrentChar] = useState(words.charAt(0));
     const [chars, setChars] = useState(words.substring(1));
+    const [seconds, setSeconds] = useState(time);
+    const [gameState, setGameState] = useState(GameState.Waiting);
+    const [correctTyped, setCorrectTyped] = useState('');
+
+    const startGame = () => {
+        if (gameState === GameState.Finished) {
+            setChars(words.substring(1));
+            setTypedChars([]);
+            setCurrentChar(words.charAt(0));
+            setSeconds(time);
+        }
+        if (gameState !== GameState.Started) {
+            let interval = setInterval(() => {
+                setSeconds((previousSeconds) => {
+                    if (previousSeconds === 0) {
+                        clearInterval(interval);
+                        setGameState(GameState.Finished);
+                        return time;
+                    } else {
+                        return previousSeconds - 1;
+                    }
+                });
+            }, 1000);
+        }
+    };
 
     useKeyPress((key: string) => {
-        let updatedTypedChars = typedChars;
-        let updatedChars = chars;
+        if (gameState != GameState.Started) {
+            startGame();
+            setGameState(GameState.Started);
+        }
 
         if (key === currentChar) {
-            updatedTypedChars += currentChar;
-            setTypedChars(updatedTypedChars);
-
+            setTypedChars([...typedChars, { letter: key, isMistake: false }]);
+            setCorrectTyped(correctTyped + currentChar);
             setCurrentChar(chars.charAt(0));
-
-            updatedChars = chars.substring(1);
-            setChars(updatedChars);
+            setChars(chars.substring(1));
         } else if (key === 'Backspace') {
-            setCurrentChar(typedChars.charAt(typedChars.length - 1));
-
-            updatedChars = currentChar + chars;
-            setChars(updatedChars);
-
-            updatedTypedChars = typedChars.slice(0, -1);
-            setTypedChars(updatedTypedChars);
+            if (typedChars.length > 1) {
+                setCurrentChar(correctTyped.charAt(correctTyped.length - 1));
+                // setCurrentChar(typedChars[typedChars.length - 1].letter);
+                setChars(currentChar + chars);
+                setTypedChars(typedChars.splice(0, typedChars.length - 1));
+                setCorrectTyped(correctTyped.slice(0, -1));
+            }
         } else {
-            // :TODO add visual indicator for making mistakes
+            setTypedChars([...typedChars, { letter: key, isMistake: true }]);
+            setCorrectTyped(correctTyped + currentChar);
+            setCurrentChar(chars.charAt(0));
+            setChars(chars.substring(1));
         }
     });
 
     return (
-        <p className={textStyles.text}>
-            {/* 67 */}
-            <span className={textStyles.typed}>{typedChars}</span>
-            <span className={textStyles.current}>{currentChar}</span>
-            <span className={textStyles.coming}>{chars.substring(0, 300)}</span>
-        </p>
+        <>
+            <div>{seconds}</div>
+            {gameState !== GameState.Finished && (
+                <p className={textStyles.text}>
+                    {/* 67 */}
+                    {typedChars.map((letter, index) => (
+                        <span
+                            className={letter.isMistake ? textStyles.error : textStyles.typed}
+                            key={index}
+                        >
+                            {letter.letter}
+                        </span>
+                    ))}
+                    <span className={textStyles.current}>{currentChar}</span>
+                    <span className={textStyles.coming}>{chars.substring(0, 300)}</span>
+                </p>
+            )}
+        </>
     );
 };
 

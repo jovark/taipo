@@ -22,12 +22,9 @@ export const getServerSideProps = async () => {
 };
 
 const Home = ({ words }: PropsWithRef<{ words: string }>) => {
-    const time: number = 15;
+    const time: number = 20;
 
-    return (
-        <Text words={words}></Text>
-        // <Text words={words} time={time}></Text>
-    );
+    return <Text words={words} time={time}></Text>;
 };
 
 export default Home;

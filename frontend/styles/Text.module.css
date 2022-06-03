@@ -1,17 +1,21 @@
 .text {
-  font-size: 1.5rem;
-  font-family: monospace;
+    font-size: 1.5rem;
+    font-family: monospace;
 }
 
 .typed {
-  color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 .current {
-  color: var(--text-secondary);
-  text-decoration: underline;
+    color: var(--text-secondary);
+    text-decoration: underline;
 }
 
 .coming {
-  color: var(--text-secondary);
+    color: var(--text-secondary);
+}
+
+.error {
+    color: red;
 }
