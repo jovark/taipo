@@ -1,25 +1,16 @@
 * {
-    box-sizing: border-box;
-    --bg-color: #282a36;
-    --highlight: #20222c;
-    --text-primary: #f2f2f2;
-    --text-secondary: #bd93f9;
-    --text-error: #ec75c4;
+  box-sizing: border-box;
+  --bg-color: #1f2430;
+  --highlight: #6dcbfa;
+  --text-primary: #abcc70;
+  --text-secondary: #ffffff;
+  --text-error: #ed8274;
 }
 
 body {
-    background: var(--bg-color);
-    font-size: 16px;
-    line-height: 1.5;
-    display: flex;
-    justify-content: center;
-}
-
-/* Text */
-.correct {
-    color: var(--text-secondary);
-}
-
-.incorrect {
-    color: var(--text-error);
+  background: var(--bg-color);
+  font-size: 16px;
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
 }

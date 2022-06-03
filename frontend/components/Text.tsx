@@ -22,7 +22,6 @@ const Text = ({
     const [chars, setChars] = useState(words.substring(1));
     const [seconds, setSeconds] = useState(time);
     const [gameState, setGameState] = useState(GameState.Waiting);
-    const [correctTyped, setCorrectTyped] = useState('');
 
     const startGame = () => {
         if (gameState === GameState.Finished) {
@@ -53,21 +52,17 @@ const Text = ({
         }
 
         if (key === currentChar) {
-            setTypedChars([...typedChars, { letter: key, isMistake: false }]);
-            setCorrectTyped(correctTyped + currentChar);
+            setTypedChars([...typedChars, { letter: currentChar, isMistake: false }]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
         } else if (key === 'Backspace') {
             if (typedChars.length > 1) {
-                setCurrentChar(correctTyped.charAt(correctTyped.length - 1));
-                // setCurrentChar(typedChars[typedChars.length - 1].letter);
+                setCurrentChar(typedChars[typedChars.length - 1].letter);
                 setChars(currentChar + chars);
                 setTypedChars(typedChars.splice(0, typedChars.length - 1));
-                setCorrectTyped(correctTyped.slice(0, -1));
             }
         } else {
-            setTypedChars([...typedChars, { letter: key, isMistake: true }]);
-            setCorrectTyped(correctTyped + currentChar);
+            setTypedChars([...typedChars, { letter: currentChar, isMistake: true }]);
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
         }
@@ -81,7 +76,9 @@ const Text = ({
                     {/* 67 */}
                     {typedChars.map((letter, index) => (
                         <span
-                            className={letter.isMistake ? textStyles.error : textStyles.typed}
+                            className={
+                                letter.isMistake ? textStyles.incorrect : textStyles.correct
+                            }
                             key={index}
                         >
                             {letter.letter}
