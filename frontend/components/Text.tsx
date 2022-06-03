@@ -22,6 +22,7 @@ const Text = ({
     const [chars, setChars] = useState(words.substring(1));
     const [seconds, setSeconds] = useState(time);
     const [gameState, setGameState] = useState(GameState.Waiting);
+    const [errors, setErrors] = useState(0);
 
     const startGame = () => {
         if (gameState === GameState.Finished) {
@@ -41,6 +42,14 @@ const Text = ({
                         return previousSeconds - 1;
                     }
                 });
+                let count = 0;
+                typedChars.forEach((char) => {
+                    if (char.isMistake) {
+                        count++;
+                    }
+                });
+
+                setErrors(count);
             }, 1000);
         }
     };
@@ -66,6 +75,15 @@ const Text = ({
             setCurrentChar(chars.charAt(0));
             setChars(chars.substring(1));
         }
+
+        let count = 0;
+        typedChars.forEach((char) => {
+            if (char.isMistake) {
+                count++;
+            }
+        });
+
+        setErrors(count);
     });
 
     return (
@@ -87,6 +105,14 @@ const Text = ({
                     <span className={textStyles.current}>{currentChar}</span>
                     <span className={textStyles.coming}>{chars.substring(0, 300)}</span>
                 </p>
+            )}
+            {gameState === GameState.Started && (
+                <div>
+                    wpm:{' '}
+                    {Math.round(
+                        ((typedChars.length / 5 - errors) / ((time - seconds) / 60)) * 10
+                    ) / 10}
+                </div>
             )}
         </>
     );
