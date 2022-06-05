@@ -19,3 +19,13 @@
 .coming {
   color: var(--text-secondary);
 }
+
+.tab {
+  color: var(--highlight);
+  font-size: 2rem;
+}
+
+.value {
+  color: var(--text-primary);
+  font-size: 1.85rem;
+}

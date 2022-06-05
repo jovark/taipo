@@ -1,5 +1,4 @@
 import { PropsWithRef, useState } from 'react';
-import { randomInt } from 'crypto';
 import useKeyPress from '../hooks/useKeyPress';
 import textStyles from '../styles/Text.module.css';
 import { useRouter } from 'next/router';
@@ -127,12 +126,16 @@ const Text = ({
             )}
             {gameState === GameState.Finished && (
                 <div>
-                    wpm:{' '}
-                    {Math.round(
-                        (((typedChars.length - 1) / 5 - errors) / (time / 60)) * 10
-                    ) / 10}
-                    , acc:{' '}
-                    {Math.floor((correctCharsTyped / totalCharsTyped) * 100 * 10) / 10}%
+                    <div className={textStyles.tab}>wpm: </div>
+                    <div className={textStyles.value}>
+                        {Math.round(
+                            (((typedChars.length - 1) / 5 - errors) / (time / 60)) * 10
+                        ) / 10}
+                    </div>
+                    <div className={textStyles.tab}>acc: </div>
+                    <div className={textStyles.value}>
+                        {Math.floor((correctCharsTyped / totalCharsTyped) * 100 * 10) / 10}%
+                    </div>
                 </div>
             )}
         </>
