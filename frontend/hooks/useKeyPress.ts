@@ -4,13 +4,14 @@ const useKeyPress = (callback: any) => {
     const [keyPressed, setKeyPressed] = useState(null);
 
     useEffect(() => {
-        const downHandler = ({ key }: any) => {
-            if (keyPressed !== key && key.length === 1) {
-                setKeyPressed(key);
-                callback && callback(key);
-            } else if (key === 'Backspace' || key === 'Tab') {
-                setKeyPressed(key);
-                callback && callback(key);
+        const downHandler = (e: KeyboardEvent) => {
+            if (keyPressed !== e.key && e.key.length === 1) {
+                setKeyPressed(e.key);
+                callback && callback(e.key);
+            } else if (e.key === 'Backspace' || e.key === 'Tab') {
+                e.preventDefault();
+                setKeyPressed(e.key);
+                callback && callback(e.key);
             }
         };
 
