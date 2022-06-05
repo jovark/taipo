@@ -8,8 +8,7 @@ const useKeyPress = (callback: any) => {
             if (keyPressed !== key && key.length === 1) {
                 setKeyPressed(key);
                 callback && callback(key);
-            } else if (key === 'Backspace') {
-
+            } else if (key === 'Backspace' || key === 'Tab') {
                 setKeyPressed(key);
                 callback && callback(key);
             }
