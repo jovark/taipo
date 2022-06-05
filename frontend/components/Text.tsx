@@ -1,6 +1,8 @@
 import { PropsWithRef, useState } from 'react';
+import { randomInt } from 'crypto';
 import useKeyPress from '../hooks/useKeyPress';
 import textStyles from '../styles/Text.module.css';
+import { useRouter } from 'next/router';
 
 enum GameState {
     Waiting,
@@ -27,8 +29,10 @@ const Text = ({
     const [errors, setErrors] = useState(0);
     const [totalCharsTyped, setTotalCharsTyped] = useState(0);
     const [correctCharsTyped, setCorrectCharsTyped] = useState(0);
+    const router = useRouter();
 
     const reset = () => {
+        router.replace(router.asPath);
         clearInterval(interval);
         setTypedChars([]);
         setCurrentChar(words.charAt(0));
