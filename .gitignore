@@ -35,3 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 
 words.ts
+
+/.idea
