@@ -1,2 +1,2 @@
 # taipo
-### A typing test project
+### A typing test project written in TypeScript
