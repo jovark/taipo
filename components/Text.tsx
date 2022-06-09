@@ -47,13 +47,12 @@ const Text = ({
         if (gameState !== GameState.Started) {
             interval = setInterval(() => {
                 setSeconds((previousSeconds) => {
-                    if (previousSeconds === 0) {
-                        setGameState(GameState.Finished);
-                        clearInterval(interval);
-                        return time;
-                    } else {
+                    if (previousSeconds !== 0) {
                         return previousSeconds - 1;
                     }
+                    setGameState(GameState.Finished);
+                    clearInterval(interval);
+                    return time;
                 });
             }, 1000);
         }
@@ -67,31 +66,42 @@ const Text = ({
             return;
         }
 
-        if (key === currentChar) {
-            setTypedChars([...typedChars, { letter: currentChar, isMistake: false }]);
-            setCurrentChar(chars.charAt(0));
-            setChars(chars.substring(1));
-            setTotalCharsTyped(totalCharsTyped + 1);
-        } else if (key === 'Backspace') {
-            if (typedChars.length > 1) {
-                setCurrentChar(typedChars[typedChars.length - 1].letter);
-                setChars(currentChar + chars);
-                setTypedChars(typedChars.splice(0, typedChars.length - 1));
-            }
-        } else if (key === 'Tab') {
-            reset();
-        } else {
-            setTypedChars([...typedChars, { letter: currentChar, isMistake: true }]);
-            setCurrentChar(chars.charAt(0));
-            setChars(chars.substring(1));
-            setTotalCharsTyped(totalCharsTyped + 1);
+        switch (key) {
+            case currentChar:
+                setTypedChars([
+                    ...typedChars,
+                    { letter: currentChar, isMistake: false },
+                ]);
+                setCurrentChar(chars.charAt(0));
+                setChars(chars.substring(1));
+                setTotalCharsTyped(totalCharsTyped + 1);
+                break;
+            case 'Backspace':
+                if (typedChars.length > 1) {
+                    setCurrentChar(typedChars[typedChars.length - 1].letter);
+                    setChars(currentChar + chars);
+                    setTypedChars(typedChars.splice(0, typedChars.length - 1));
+                }
+                break;
+            case 'Tab':
+                reset();
+                break;
+            default:
+                setTypedChars([
+                    ...typedChars,
+                    { letter: currentChar, isMistake: true },
+                ]);
+                setCurrentChar(chars.charAt(0));
+                setChars(chars.substring(1));
+                setTotalCharsTyped(totalCharsTyped + 1);
         }
+
         // Update wpm and accuracy
         let errorCount = 0;
         let count = 0;
 
         typedChars.forEach((char) => {
-            if (char.isMistake) {
+            if (!char.isMistake) {
                 errorCount++;
             } else {
                 count++;
