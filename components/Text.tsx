@@ -44,18 +44,19 @@ const Text = ({
     };
 
     const startGame = () => {
-        if (gameState !== GameState.Started) {
-            interval = setInterval(() => {
-                setSeconds((previousSeconds) => {
-                    if (previousSeconds !== 0) {
-                        return previousSeconds - 1;
-                    }
-                    setGameState(GameState.Finished);
-                    clearInterval(interval);
-                    return time;
-                });
-            }, 1000);
+        if (gameState === GameState.Started) {
+            return;
         }
+        interval = setInterval(() => {
+            setSeconds((previousSeconds) => {
+                if (previousSeconds !== 0) {
+                    return previousSeconds - 1;
+                }
+                setGameState(GameState.Finished);
+                clearInterval(interval);
+                return time;
+            });
+        }, 1000);
     };
 
     useKeyPress((key: string) => {
@@ -101,7 +102,7 @@ const Text = ({
         let count = 0;
 
         typedChars.forEach((char) => {
-            if (!char.isMistake) {
+            if (char.isMistake) {
                 errorCount++;
             } else {
                 count++;
